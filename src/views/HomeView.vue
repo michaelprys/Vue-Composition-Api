@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h2>{{ appTitle }}</h2>
     <h3>{{ counterData.title }}:</h3>
 
     <div>
@@ -18,8 +19,7 @@
 <script setup>
 import { reactive } from "vue";
 
-// const counter = ref(0),
-//   counterTitle = ref("My Counter");
+const appTitle = "My Amazing Counter App";
 
 const counterData = reactive({
   count: 0,
