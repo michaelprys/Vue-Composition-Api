@@ -22,9 +22,13 @@
 </template>
 
 <script setup>
-import { reactive, computed, watch } from "vue";
+import { reactive, computed, watch, onMounted } from "vue";
 
 const appTitle = "My Amazing Counter App";
+
+onMounted(() => {
+  console.log("Do stuff related to App Title");
+});
 
 const counterData = reactive({
   count: 0,
@@ -51,9 +55,12 @@ const increaseCounter = (amount, e) => {
 const decreaseCounter = (amount) => {
   counterData.count -= amount;
 };
+onMounted(() => {
+  console.log("Do stuff related to Counter");
+});
 </script>
-<!--
-<script>
+
+<!-- <script>
 export default {
   data() {
     return {
@@ -70,6 +77,14 @@ export default {
     count(newCount, oldCount) {
       if (newCount == 20) alert("asfadfsas");
     },
+  },
+  mounted() {
+    // do stuff when component is loaded
+    console.log("mounted");
+  },
+  unmounted() {
+    // do stuff when component is unloaded from the browser
+    console.log("unmounted");
   },
 };
 </script> -->
