@@ -16,13 +16,14 @@
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input v-model="counterData.title" type="text" />
+      <input v-model="counterData.title" type="text" v-autofocus />
     </div>
   </div>
 </template>
 
 <script setup>
 import { reactive, computed, watch, onMounted } from "vue";
+import { vAutofocus } from "../directives/vAutofocus";
 
 const appTitle = "My Amazing Counter App";
 
@@ -85,6 +86,13 @@ export default {
   unmounted() {
     // do stuff when component is unloaded from the browser
     console.log("unmounted");
+  },
+  directives: {
+    autofocus: {
+      mounted(el) {
+        el.focus();
+      },
+    },
   },
 };
 </script> -->
