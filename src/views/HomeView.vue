@@ -1,30 +1,35 @@
 <template>
   <div class="home">
     <h2 ref="appTitleRef">{{ appTitle }}</h2>
-    <h3>{{ counterData.title }}:</h3>
+    <h3>{{ counter.title }}</h3>
 
     <div>
-      <button @click="decreaseCounter(2)" class="btn">--</button>
-      <button @click="decreaseCounter(1)" class="btn">-</button>
+      <button class="btn">--</button>
+      <button class="btn">-</button>
 
-      <span class="counter">{{ counterData.count }}</span>
-      <button @click="increaseCounter(1, $event)" class="btn">+</button>
-      <button @click="increaseCounter(2)" class="btn">++</button>
+      <span class="counter">{{ counter.count }}</span>
+      <button class="btn">+</button>
+      <button class="btn">++</button>
     </div>
 
-    <p>This counter is {{ oddOrEven }}</p>
+    <p>This counter is odd/even</p>
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input v-model="counterData.title" type="text" v-autofocus />
+      <input
+        v-autofocus
+        v-model="counter.title"
+        type="text" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useCounter } from "@/use/useCounter";
 import { vAutofocus } from "../directives/vAutofocus";
+import { useCounterStore } from "@/stores/counter.js"
+
+const counter = useCounterStore();
 
 const appTitle = "My Amazing Counter App";
 
@@ -33,46 +38,7 @@ const appTitleRef = ref(null);
 onMounted(() => {
   console.log(`The app title is ${appTitleRef.value.offsetWidth} px wide!`);
 });
-
-const { counterData, oddOrEven, increaseCounter, decreaseCounter } =
-  useCounter();
 </script>
-
-<!-- <script>
-export default {
-  data() {
-    return {
-      count: 0,
-    };
-  },
-  computed: {
-    myComputedProperty() {
-      // perform some logic based on a data property
-      return "my result";
-    },
-  },
-  watch: {
-    count(newCount, oldCount) {
-      if (newCount == 20) alert("asfadfsas");
-    },
-  },
-  mounted() {
-    // do stuff when component is loaded
-    console.log("mounted");
-  },
-  unmounted() {
-    // do stuff when component is unloaded from the browser
-    console.log("unmounted");
-  },
-  directives: {
-    autofocus: {
-      mounted(el) {
-        el.focus();
-      },
-    },
-  },
-};
-</script> -->
 
 <style scoped>
 .home {
@@ -85,6 +51,7 @@ export default {
   font-size: 40px;
   margin: 10px;
 }
+
 .edit {
   margin-top: 60px;
 }
