@@ -29,6 +29,7 @@
 import { ref } from "vue";
 import Modal from "../components/Modal.vue";
 import ModalDark from "../components/ModalDark.vue";
+/*props*/
 
 /*modals*/
 
