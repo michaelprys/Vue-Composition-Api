@@ -2,8 +2,11 @@
   <div class="modals">
     <h1>Modals</h1>
     <button @click="showModal = true">Show modal</button>
-    <Modal v-if="showModal">
-      <template #title>My new title</template>
+    <Modal
+      v-if="showModal"
+      @hideModal="showModal = false"
+      title="My modal title (via prop)"
+    >
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
         nostrum, eum quibusdam harum soluta illum cupiditate culpa aut mollitia

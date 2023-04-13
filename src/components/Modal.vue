@@ -1,12 +1,25 @@
 <template>
   <teleport to=".modals-container">
     <div class="modal">
-      <h1><slot name="title" /></h1>
+      <h1>{{ title }}</h1>
       <slot />
-      <button>Hide modal</button>
+      <button @click="handleButtonClick">Hide modal</button>
     </div>
   </teleport>
 </template>
+
+<script setup>
+/*props*/
+const props = defineProps(["title"]);
+console.log(props.title);
+
+/*emits*/
+const emit = defineEmits(["hideModal"]);
+
+const handleButtonClick = () => {
+  emit("hideModal");
+};
+</script>
 
 <style scoped>
 .modal {
