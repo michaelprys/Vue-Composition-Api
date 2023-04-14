@@ -4,22 +4,19 @@
     <h3>{{ counter.title }}</h3>
 
     <div>
-      <button class="btn">--</button>
-      <button class="btn">-</button>
+      <button @click="counter.decreaseCounter(2)" class="btn">--</button>
+      <button @click="counter.decreaseCounter(1)" class="btn">-</button>
 
       <span class="counter">{{ counter.count }}</span>
-      <button class="btn">+</button>
-      <button class="btn">++</button>
+      <button @click="counter.increaseCounter(1)" class="btn">+</button>
+      <button @click="counter.increaseCounter(2)" class="btn">++</button>
     </div>
 
-    <p>This counter is odd/even</p>
+    <p>This counter is {{ counter.oddOrEven }}</p>
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input
-        v-autofocus
-        v-model="counter.title"
-        type="text" />
+      <input v-autofocus v-model="counter.title" type="text" />
     </div>
   </div>
 </template>
@@ -27,7 +24,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { vAutofocus } from "../directives/vAutofocus";
-import { useCounterStore } from "@/stores/counter.js"
+import { useCounterStore } from "@/stores/counter.js";
 
 const counter = useCounterStore();
 
